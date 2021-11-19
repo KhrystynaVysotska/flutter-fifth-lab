@@ -2,17 +2,17 @@ import 'package:flutter/material.dart';
 import 'package:river_water_level/bloc/blocs/rivers_bloc.dart';
 import 'package:river_water_level/bloc/events/rivers_event.dart';
 import 'package:river_water_level/bloc/states/rivers_state.dart';
+import 'package:river_water_level/controllers/alert_measurements_state_controller.dart';
 import 'package:river_water_level/pages/rivers_page.dart';
-import 'package:river_water_level/widgets/measurements/alerts/alert_measurement_button.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({Key? key}) : super(key: key);
+class RiversStateController extends StatefulWidget {
+  const RiversStateController({Key? key}) : super(key: key);
 
   @override
-  _HomePageState createState() => _HomePageState();
+  _RiversStateControllerState createState() => _RiversStateControllerState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _RiversStateControllerState extends State<RiversStateController> {
   final RiversBloc _riversBloc = RiversBloc();
 
   @override
@@ -54,7 +54,7 @@ class _HomePageState extends State<HomePage> {
           },
         ),
       ),
-      floatingActionButton: const AlertMeasurementButton(),
+      floatingActionButton: const AlertMeasurementsStateController(),
     );
   }
 }

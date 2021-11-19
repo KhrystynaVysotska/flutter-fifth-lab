@@ -4,15 +4,16 @@ import 'package:river_water_level/bloc/events/latest_measurements_event.dart';
 import 'package:river_water_level/bloc/states/latest_measurements_state.dart';
 import 'package:river_water_level/widgets/measurements/latest_measurements_carousel.dart';
 
-class LatestMeasurementsSection extends StatefulWidget {
-  const LatestMeasurementsSection({Key? key}) : super(key: key);
+class LatestMeasurementsStateController extends StatefulWidget {
+  const LatestMeasurementsStateController({Key? key}) : super(key: key);
 
   @override
-  _LatestMeasurementsSectionState createState() =>
-      _LatestMeasurementsSectionState();
+  _LatestMeasurementsStateControllerState createState() =>
+      _LatestMeasurementsStateControllerState();
 }
 
-class _LatestMeasurementsSectionState extends State<LatestMeasurementsSection> {
+class _LatestMeasurementsStateControllerState
+    extends State<LatestMeasurementsStateController> {
   final LatestMeasurementsBloc _latestMeasurementsBloc =
       LatestMeasurementsBloc();
 
