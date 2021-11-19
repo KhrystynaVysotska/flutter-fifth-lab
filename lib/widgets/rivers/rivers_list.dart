@@ -9,9 +9,11 @@ class RiversList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: rivers.length,
-      itemBuilder: (context, index) => RiverCard(river: rivers[index]),
+    return SliverList(
+      delegate: SliverChildBuilderDelegate(
+        (BuildContext context, int index) => RiverCard(river: rivers[index]),
+        childCount: rivers.length,
+      ),
     );
   }
 }
