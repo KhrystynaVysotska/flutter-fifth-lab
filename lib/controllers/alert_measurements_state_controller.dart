@@ -2,19 +2,20 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:river_water_level/bloc/events/alert_measurements_event.dart';
 import 'package:river_water_level/bloc/states/alert_measurements_state.dart';
-import 'alert_measurement_modal.dart';
 import 'package:river_water_level/bloc/blocs/alert_measurements_bloc.dart';
+import 'package:river_water_level/widgets/measurements/alerts/alert_measurement_modal.dart';
 
-class AlertMeasurementButton extends StatelessWidget {
-  const AlertMeasurementButton({Key? key}) : super(key: key);
+class AlertMeasurementsStateController extends StatelessWidget {
+  const AlertMeasurementsStateController({Key? key}) : super(key: key);
 
   FloatingActionButton _buildFloatingActionErrorButton(context, measurements) {
     return FloatingActionButton(
       onPressed: () {
         showDialog<void>(
-            context: context,
-            builder: (context) =>
-                AlertMeasurementModal(measurements: measurements));
+          context: context,
+          builder: (context) =>
+              AlertMeasurementModal(measurements: measurements),
+        );
       },
       child: const Text("!",
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 30)),
