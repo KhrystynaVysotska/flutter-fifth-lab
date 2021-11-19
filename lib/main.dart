@@ -2,12 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:river_water_level/bloc/blocs/alert_measurements_bloc.dart';
-import 'package:river_water_level/pages/home_page.dart';
+import 'package:river_water_level/controllers/rivers_state_controller.dart';
 
-void main() => runApp(Provider(
-      create: (_) => AlertMeasurementsBloc(),
-      child: const MyApp(),
-    ));
+void main() => runApp(
+      Provider(
+        create: (_) => AlertMeasurementsBloc(),
+        child: const MyApp(),
+      ),
+    );
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       title: "Rivers water level",
       theme: ThemeData(primaryColor: primaryColor),
       debugShowCheckedModeBanner: false,
-      home: const HomePage(),
+      home: const RiversStateController(),
     );
   }
 }
