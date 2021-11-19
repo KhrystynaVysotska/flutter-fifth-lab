@@ -45,7 +45,7 @@ class AlertMeasurementModal extends StatelessWidget {
               _alertMeasurementsBloc.inputEventSink
                   .add(AlertMeasurementsClearEvent());
             },
-            child: Text('ОЧИСТИТИ'),
+            child: const Text('ОЧИСТИТИ'),
           ),
           TextButton(
             style: ButtonStyle(
@@ -54,7 +54,7 @@ class AlertMeasurementModal extends StatelessWidget {
             onPressed: () {
               Navigator.of(context, rootNavigator: true).pop(context);
             },
-            child: Text('ЗАКРИТИ'),
+            child: const Text('ЗАКРИТИ'),
           )
         ]);
   }
