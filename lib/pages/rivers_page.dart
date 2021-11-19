@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:river_water_level/controllers/latest_measurements_state_controller.dart';
 import 'package:river_water_level/models/river.dart';
 import 'package:river_water_level/widgets/common/page_header.dart';
-import 'package:river_water_level/widgets/measurements/latest_measurements_section.dart';
 import 'package:river_water_level/widgets/rivers/rivers_list.dart';
 
 class RiversPage extends StatelessWidget {
@@ -24,7 +24,7 @@ class RiversPage extends StatelessWidget {
           expandedHeight: 160.0,
           backgroundColor: Theme.of(context).primaryColor,
           flexibleSpace: const FlexibleSpaceBar(
-            background: LatestMeasurementsSection(),
+            background: LatestMeasurementsStateController(),
           ),
         ),
         const SliverToBoxAdapter(child: PageHeader(header: 'Оберіть річку:')),
