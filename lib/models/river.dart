@@ -18,7 +18,7 @@ class River {
       id: json['id'],
       name: json['name'],
       length: double.parse(json['length_in_km']),
-      imageUrl: json['image_url'],
+      imageUrl: json['image_url'] ?? "",
       basinArea: double.parse(json['basin_area_in_sq_km']),
     );
   }
