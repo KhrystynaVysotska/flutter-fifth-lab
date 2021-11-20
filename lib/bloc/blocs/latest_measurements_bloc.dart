@@ -8,11 +8,13 @@ class LatestMeasurementsBloc {
   LatestMeasurementsState _state = LatestMeasurementsEmptyState();
   final MeasurementsApiWrapper measurementsApiWrapper =
       MeasurementsApiWrapper();
-  
-  final _inputEventController = StreamController<LatestMeasurementsEvent>();
-  final _outputStateController = StreamController<LatestMeasurementsState>();
 
-  LatestMeasurementsState get initialState => LatestMeasurementsEmptyState();
+  final _inputEventController =
+      StreamController<LatestMeasurementsEvent>.broadcast();
+  final _outputStateController =
+      StreamController<LatestMeasurementsState>.broadcast();
+
+  LatestMeasurementsState get initialState => _state;
 
   StreamSink<LatestMeasurementsEvent> get inputEventSink =>
       _inputEventController.sink;
@@ -41,6 +43,7 @@ class LatestMeasurementsBloc {
 
   LatestMeasurementsBloc() {
     _inputEventController.stream.listen(_mapEventToState);
+    inputEventSink.add(LatestMeasurementsLoadEvent());
   }
 
   void dispose() {

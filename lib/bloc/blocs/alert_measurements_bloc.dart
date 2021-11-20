@@ -9,10 +9,12 @@ class AlertMeasurementsBloc {
   final MeasurementsApiWrapper measurementsApiWrapper =
       MeasurementsApiWrapper();
 
-  final _inputEventController = StreamController<AlertMeasurementsEvent>();
-  final _outputStateController = StreamController<AlertMeasurementsState>();
+  final _inputEventController =
+      StreamController<AlertMeasurementsEvent>.broadcast();
+  final _outputStateController =
+      StreamController<AlertMeasurementsState>.broadcast();
 
-  AlertMeasurementsState get initialState => AlertMeasurementsClearedState();
+  AlertMeasurementsState get initialState => _state;
 
   StreamSink<AlertMeasurementsEvent> get inputEventSink =>
       _inputEventController.sink;
