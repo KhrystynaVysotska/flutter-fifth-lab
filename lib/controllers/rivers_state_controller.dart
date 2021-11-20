@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:river_water_level/bloc/blocs/rivers_bloc.dart';
-import 'package:river_water_level/bloc/events/rivers_event.dart';
 import 'package:river_water_level/bloc/states/rivers_state.dart';
-import 'package:river_water_level/controllers/alert_measurements_state_controller.dart';
 import 'package:river_water_level/pages/rivers_page.dart';
+import 'package:river_water_level/widgets/common/custom_scaffold.dart';
 
 class RiversStateController extends StatefulWidget {
   const RiversStateController({Key? key}) : super(key: key);
@@ -13,26 +12,13 @@ class RiversStateController extends StatefulWidget {
 }
 
 class _RiversStateControllerState extends State<RiversStateController> {
-  final RiversBloc _riversBloc = RiversBloc();
-
-  @override
-  void initState() {
-    super.initState();
-    _riversBloc.inputEventSink.add(RiversLoadEvent());
-  }
-
-  @override
-  void dispose() {
-    _riversBloc.dispose();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Theme.of(context).primaryColor,
-      body: SafeArea(
-        child: StreamBuilder(
+    final RiversBloc _riversBloc = RiversBloc();
+
+    return SafeArea(
+      child: CustomScaffold(
+        body: StreamBuilder(
           stream: _riversBloc.outputStateStream,
           initialData: _riversBloc.initialState,
           builder: (context, snapshot) {
@@ -54,7 +40,6 @@ class _RiversStateControllerState extends State<RiversStateController> {
           },
         ),
       ),
-      floatingActionButton: const AlertMeasurementsStateController(),
     );
   }
 }
