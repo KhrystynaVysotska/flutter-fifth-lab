@@ -1,7 +1,7 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:river_water_level/models/latest_measurement.dart';
 import 'measurement_card/measurement_card.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:river_water_level/models/latest_measurement.dart';
 
 class LatestMeasurementsCarousel extends StatelessWidget {
   const LatestMeasurementsCarousel({Key? key, required this.latestMeasurements})
