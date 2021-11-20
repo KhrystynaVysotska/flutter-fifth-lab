@@ -1,12 +1,18 @@
+import 'bloc/blocs/redirection_to_measurements_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'bloc/blocs/latest_measurements_bloc.dart';
 import 'package:river_water_level/bloc/blocs/alert_measurements_bloc.dart';
 import 'package:river_water_level/controllers/rivers_state_controller.dart';
 
 void main() => runApp(
-      Provider(
-        create: (_) => AlertMeasurementsBloc(),
+      MultiProvider(
+        providers: [
+          Provider(create: (_) => AlertMeasurementsBloc()),
+          Provider(create: (_) => LatestMeasurementsBloc()),
+          Provider(create: (_) => RedirectionToMeasurementsBloc()),
+        ],
         child: const MyApp(),
       ),
     );
