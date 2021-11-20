@@ -1,36 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:river_water_level/bloc/blocs/latest_measurements_bloc.dart';
-import 'package:river_water_level/bloc/events/latest_measurements_event.dart';
 import 'package:river_water_level/bloc/states/latest_measurements_state.dart';
 import 'package:river_water_level/widgets/measurements/latest_measurements_carousel.dart';
 
-class LatestMeasurementsStateController extends StatefulWidget {
+class LatestMeasurementsStateController extends StatelessWidget {
   const LatestMeasurementsStateController({Key? key}) : super(key: key);
 
   @override
-  _LatestMeasurementsStateControllerState createState() =>
-      _LatestMeasurementsStateControllerState();
-}
-
-class _LatestMeasurementsStateControllerState
-    extends State<LatestMeasurementsStateController> {
-  final LatestMeasurementsBloc _latestMeasurementsBloc =
-      LatestMeasurementsBloc();
-
-  @override
-  void initState() {
-    super.initState();
-    _latestMeasurementsBloc.inputEventSink.add(LatestMeasurementsLoadEvent());
-  }
-
-  @override
-  void dispose() {
-    _latestMeasurementsBloc.dispose();
-    super.dispose();
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final LatestMeasurementsBloc _latestMeasurementsBloc =
+        Provider.of<LatestMeasurementsBloc>(context);
+
     return StreamBuilder(
       stream: _latestMeasurementsBloc.outputStateStream,
       initialData: _latestMeasurementsBloc.initialState,
