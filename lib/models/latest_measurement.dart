@@ -1,5 +1,6 @@
 class LatestMeasurement {
   final int id;
+  final int sensorId;
   final bool isCritical;
   final String timestamp;
   final String riverName;
@@ -9,6 +10,7 @@ class LatestMeasurement {
 
   LatestMeasurement({
     required this.id,
+    required this.sensorId,
     required this.timestamp,
     required this.riverName,
     required this.locationName,
@@ -19,6 +21,7 @@ class LatestMeasurement {
   factory LatestMeasurement.fromJson(Map<String, dynamic> json) {
     return LatestMeasurement(
       id: json['measurement']['id'],
+      sensorId: json['float_sensor']['id'],
       timestamp: json['measurement']['timestamp'],
       riverName: json['measurement_point']['river']['name'],
       locationName: json['measurement_point']['locality']['settlement'],
