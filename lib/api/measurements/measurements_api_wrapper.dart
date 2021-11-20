@@ -1,5 +1,6 @@
 import 'package:river_water_level/api/measurements/measurements_api.dart';
 import 'package:river_water_level/models/latest_measurement.dart';
+import 'package:river_water_level/models/measurement.dart';
 
 class MeasurementsApiWrapper {
   final MeasurementsApi _measurementsApi = MeasurementsApi();
@@ -12,4 +13,7 @@ class MeasurementsApiWrapper {
         await _measurementsApi.getLatestMeasurements();
     return latest.where((measurement) => measurement.isCritical).toList();
   }
+
+  Future<List<Measurement>> getAllMeasurementsBy(int sensorId) =>
+      _measurementsApi.getMeasurementsBy(sensorId);
 }
