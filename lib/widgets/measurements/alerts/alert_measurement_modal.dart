@@ -3,7 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:river_water_level/bloc/blocs/alert_measurements_bloc.dart';
 import 'package:river_water_level/bloc/events/alert_measurements_event.dart';
 import 'package:river_water_level/models/latest_measurement.dart';
-import 'package:river_water_level/widgets/measurements/alerts/alert_measurement_item.dart';
+import 'package:river_water_level/widgets/measurements/alerts/alert_measurement_tile/alert_measurement_tile.dart';
 
 class AlertMeasurementModal extends StatelessWidget {
   const AlertMeasurementModal({Key? key, required this.measurements})
@@ -13,25 +13,20 @@ class AlertMeasurementModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _alertMeasurementsBloc = Provider.of<AlertMeasurementsBloc>(context);
+    final _bloc = Provider.of<AlertMeasurementsBloc>(context);
 
     return AlertDialog(
         title: const Text('Підвищений рівень води:'),
+        contentPadding:
+            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 15.0),
+        actionsPadding:
+            const EdgeInsets.symmetric(horizontal: 10.0, vertical: 5.0),
         content: SizedBox(
-          height: 200,
-          width: 600,
+          height: 250,
+          width: 300,
           child: ListView(
-            shrinkWrap: true,
             children: measurements
-                .map(
-                  (measurement) => AlertMeasurementItem(
-                    river: measurement.riverName,
-                    location: measurement.locationName,
-                    onPressed: () {
-                      // TODO: navigate to measurement page
-                    },
-                  ),
-                )
+                .map((item) => AlertMeasurementItem(measurement: item))
                 .toList(),
           ),
         ),
@@ -42,8 +37,7 @@ class AlertMeasurementModal extends StatelessWidget {
             ),
             onPressed: () {
               Navigator.of(context, rootNavigator: true).pop(context);
-              _alertMeasurementsBloc.inputEventSink
-                  .add(AlertMeasurementsClearEvent());
+              _bloc.inputEventSink.add(AlertMeasurementsClearEvent());
             },
             child: const Text('ОЧИСТИТИ'),
           ),
