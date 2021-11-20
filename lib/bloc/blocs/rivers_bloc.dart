@@ -9,10 +9,10 @@ class RiversBloc {
   RiversState _state = RiversEmptyState();
   final RiversApiWrapper riversApiWrapper = RiversApiWrapper();
 
-  final _inputEventController = StreamController<RiversEvent>();
-  final _outputStateController = StreamController<RiversState>();
+  final _inputEventController = StreamController<RiversEvent>.broadcast();
+  final _outputStateController = StreamController<RiversState>.broadcast();
 
-  RiversState get initialState => RiversEmptyState();
+  RiversState get initialState => _state;
 
   StreamSink<RiversEvent> get inputEventSink => _inputEventController.sink;
 
@@ -36,6 +36,7 @@ class RiversBloc {
 
   RiversBloc() {
     _inputEventController.stream.listen(_mapEventToState);
+    inputEventSink.add(RiversLoadEvent());
   }
 
   void dispose() {
